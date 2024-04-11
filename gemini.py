@@ -44,7 +44,7 @@ genai.configure(api_key=GOOGLE_API_KEY)
 # print(chat.history)
 
 #Temperature and Limit Setting for prompts
-#Higher Temperature- more creative responses
+#Higher Temperature - more creative responses
 
 # model = genai.GenerativeModel(
 #     'gemini-pro',
@@ -58,4 +58,17 @@ genai.configure(api_key=GOOGLE_API_KEY)
 #     # Limit to 5 facts.
 #     generation_config = genai.GenerationConfig(stop_sequences=['\n6'])
 # )
+# print(response.text)
+
+#Practice using audio file
+
+#I did have to first run this in the terminal:
+#wget -q $URL -O sample.mp3 -q "https://storage.googleapis.com/generativeai-downloads/data/State_of_the_Union_Address_30_January_1961.mp3" -O sample.mp3
+
+#python code...
+# URL = "https://storage.googleapis.com/generativeai-downloads/data/State_of_the_Union_Address_30_January_1961.mp3"
+# your_file = genai.upload_file(path='sample.mp3')
+# prompt = "Listen carefully to the following audio file. Provide a brief summary."
+# model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
+# response = model.generate_content([prompt, your_file])
 # print(response.text)
