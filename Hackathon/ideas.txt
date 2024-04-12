@@ -22,3 +22,27 @@ User gives Gemini an audio file with beats, and Gemini writes lyrics for those b
 -Tiktok Analyser
 Post your Tiktok, and based on preddetermined critrea, it tells you the likelihood of the
 video to do well
+
+
+AI Grader
+
+App that grades papers and open ended questions/assignments
+
+Design Ideas:
+
+Guide Options:
+-attach rubrik
+-Copy paste the instructions
+-Grade based on correctness
+
+Grading Options:
+-Upload one file
+-Upload more than one file for one rubrik
+
+other
+-Option for teacher to login and save their rubriks ?
+-Save papers that were already graded?
+
+Graphics:
+-"Going through the text" graphics while scanning
+-Loading
