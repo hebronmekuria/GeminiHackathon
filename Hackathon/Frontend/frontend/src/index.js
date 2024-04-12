@@ -1,24 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
-import Greeting from './Greeting';
-import {Slider} from "@nextui-org/react";
 
+import App from './App';
+import {Avatar, AvatarGroup, AvatarIcon} from "@nextui-org/react";
+import {Button} from "@nextui-org/button";
+import {NextUIProvider} from "@nextui-org/react";
+
+import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Greeting/>
-    <Slider 
-      label="Temperature" 
-      step={0.01} 
-      maxValue={1} 
-      minValue={0} 
-      defaultValue={0.4}
-      className="max-w-md"
-    />
-  </React.StrictMode>
+  <NextUIProvider>
+    <App></App>
+  </NextUIProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
