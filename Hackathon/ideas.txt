@@ -1,0 +1,24 @@
+Ideas for the hackathon
+-Interactive Fiction
+
+Gemini tells a story and in between, gives the users the opportunity to 
+choose two paths and the story gets altered based on their choices
+
+-Dream Interpreter
+
+Users can describe their dreams to Gemini in audio format
+and Gemini creates a visual representation of their dreams. 
+
+  Add on: Maybe pulls dream meanings from interpretation sites
+
+-Photo Editing
+
+Gemini applies a theme to a user's photo based on their description
+
+-Lyric Generation
+
+User gives Gemini an audio file with beats, and Gemini writes lyrics for those beats?
+
+-Tiktok Analyser
+Post your Tiktok, and based on preddetermined critrea, it tells you the likelihood of the
+video to do well
