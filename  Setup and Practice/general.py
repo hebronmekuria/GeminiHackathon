@@ -1,5 +1,5 @@
 import google.generativeai as genai
-
+import subprocess
 #These imports are used to import the .env file which contains the API key
 from dotenv import load_dotenv
 import os
@@ -72,3 +72,15 @@ genai.configure(api_key=GOOGLE_API_KEY)
 # model = genai.GenerativeModel('models/gemini-1.5-pro-latest')
 # response = model.generate_content([prompt, your_file])
 # print(response.text)
+
+
+
+def convert(input_pdf):
+    try:
+        # Run the Bash script with the PDF file as an argument
+        output = subprocess.check_output(['./scripts.sh', input_pdf], stderr=subprocess.STDOUT)
+        print(output.decode())
+    except subprocess.CalledProcessError as e:
+        print("Failed to convert PDF:", e.output.decode())
+        print("Return Code:", e.returncode)
+convert("mininet.pdf")

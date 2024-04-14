@@ -39,6 +39,9 @@ Grading Options:
 -Upload one file
 -Upload more than one file for one rubrik
 
+Considerations:
+-When the conversion is done, what if the new file as two pages??
+
 other
 -Option for teacher to login and save their rubriks ?
 -Save papers that were already graded?
@@ -46,3 +49,12 @@ other
 Graphics:
 -"Going through the text" graphics while scanning
 -Loading
+
+
+-AI Tourguide
+Tourist Guide where they take a photo of a landmark, and the AI 
+tells them historical facts about the landmark
+
+-AI Teaching Assistant 
+Teacher uploads a video of the classroom and the AI can tell which student
+is fidgety, looking confused or needs special attention
