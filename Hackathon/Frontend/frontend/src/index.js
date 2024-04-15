@@ -1,15 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 
-import App from './App';
-import {Avatar, AvatarGroup, AvatarIcon} from "@nextui-org/react";
-import {Button} from "@nextui-org/button";
-import {NextUIProvider} from "@nextui-org/react";
+import App from "./App";
+import { NextUIProvider } from "@nextui-org/react";
 
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <NextUIProvider>
     <App></App>
