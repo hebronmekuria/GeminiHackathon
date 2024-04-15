@@ -22,7 +22,6 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 # import PIL.Image
 # img = PIL.Image.open('image.jpg')
-# img
 # prompt = """This image contains a sketch of a potential product along with some notes.
 # Given the product sketch, describe the product as thoroughly as possible based on what you
 # see in the image, making sure to note all of the product features. Return output in json format:
@@ -35,13 +34,15 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 #Practice with chat history
 
-# model = genai.GenerativeModel('gemini-pro')
-# chat = model.start_chat(history=[])
-# response = chat.send_message("In one sentence, explain how a computer works to a young child.")
-# print(response.text)
-# response = chat.send_message("Okay, how about a more detailed explanation to a high schooler?")
-# print(response.text)
-# print(chat.history)
+model = genai.GenerativeModel('gemini-pro')
+import PIL.Image
+img = PIL.Image.open('image.jpg')
+chat = model.start_chat(history=[])
+response = chat.send_message("In one sentence, explain how a computer works to a young child.")
+response = chat.send_message(img)
+response = chat.send_message("Describe what's inside the image I just sent")
+print(response.text)
+print(chat.history)
 
 #Temperature and Limit Setting for prompts
 #Higher Temperature - more creative responses
@@ -75,12 +76,12 @@ genai.configure(api_key=GOOGLE_API_KEY)
 
 
 
-def convert(input_pdf):
-    try:
-        # Run the Bash script with the PDF file as an argument
-        output = subprocess.check_output(['./scripts.sh', input_pdf], stderr=subprocess.STDOUT)
-        print(output.decode())
-    except subprocess.CalledProcessError as e:
-        print("Failed to convert PDF:", e.output.decode())
-        print("Return Code:", e.returncode)
-convert("mininet.pdf")
+# def convert(input_pdf):
+#     try:
+#         # Run the Bash script with the PDF file as an argument
+#         output = subprocess.check_output(['./scripts.sh', input_pdf], stderr=subprocess.STDOUT)
+#         print(output.decode())
+#     except subprocess.CalledProcessError as e:
+#         print("Failed to convert PDF:", e.output.decode())
+#         print("Return Code:", e.returncode)
+# convert("mininet.pdf")
