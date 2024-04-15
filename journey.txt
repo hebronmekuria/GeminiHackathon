@@ -138,3 +138,9 @@ parse the output folders and send them to the API
 
 There's something weird with the directory, because if I move the input file to a 
 directory outside of Gemini, it doesn't work 
+
+Bash script gives this error, but it infact works to convert
+a pdf file to multiple or one jpg files IN THE SAME LOCATION as 
+the original file
+
+The input given to convert needs to be a path to the pdf file though 
