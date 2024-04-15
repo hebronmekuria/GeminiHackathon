@@ -143,4 +143,17 @@ Bash script gives this error, but it infact works to convert
 a pdf file to multiple or one jpg files IN THE SAME LOCATION as 
 the original file
 
-The input given to convert needs to be a path to the pdf file though 
+The input given to convert needs to be a path to the pdf file though
+
+Progress check:
+I wrote the python code that
+-Receives an essay and rubrik file paths
+-Converts the essay and rubrik to jpg files
+-Passes the files into a conversation with Gemini
+
+What isn't working:
+Gemini doesn't remember the conversation with the way that I had things
+(With .generate_content) 
+To use the chat function, it doesn't seem to recognize image formats...
+
+What to do..
