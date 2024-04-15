@@ -1,0 +1,140 @@
+Development using Gemini API via the Python SDK
+
+Tried: !pip install -U -q google.generativeai
+Error: ERROR: Could not find a version that satisfies the requirement python (from versions: none)
+ERROR: No matching distribution found for python
+
+Also Tried: pip install -U -q google.generativeai
+
+This worked: pip3 install -U -q google.generativeai
+
+Inside a new Py file:
+import google.generativeai as genai
+
+Inside an .env file, add the Google API Key
+
+Imported the .env file and tried running the py file, but error says:
+ raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up 
+Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+
+Fix: Forgot load_dotenv()
+
+Using an Image
+
+To load the image on your machine:
+curl -o image.jpg https://storage.googleapis.com/generativeai-downloads/images/jetpack.jpg
+
+When I copied the rest of the code for making a prompt using the image and text prompt,
+it didn't work, says "PIL" is not recognized
+
+PIL is:
+a free and open-source additional library for the Python programming language that adds support for opening, 
+manipulating, and saving many different image file formats
+
+To get PIL: pip install pillow
+This resolves the error
+
+To practice with audio input prompts, we can use wget
+To install: brew install wget
+To use: !wget -q $URL -O sample.mp3 # This adds an audio (.mp3) file
+to the project
+Then do the python code...
+
+Out of nowhere, my py files won't run...
+
+Let's work on the frontend in the mean time
+Let's init a React App
+I'm using a UI library called NextUI
+
+yarn add @nextui-org/react framer-motion
+
+Next, set up tailwind:
+npm install -D tailwindcss
+npx tailwindcss init
+follow the other instructions in https://tailwindcss.com/docs/installation
+
+Then add the following to tailwind.config.js
+// tailwind.config.js
+const {nextui} = require("@nextui-org/react");
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    // ...
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  darkMode: "class",
+  plugins: [nextui()],
+};
+
+
+Uploading a file for file inputs:
+curl -o image.jpg https://storage.googleapis.com/generativeai-downloads/images/jetpack.jpg
+
+Delete files that you're uploaded to genai
+genai.delete_file(sample_file.name)
+
+File types supported by Gemini
+
+Gemini 1.5 Pro - Image, Audio
+
+Gemini Pro Vision - Image
+
+Image types supported:
+-PNG 
+-JPEG 
+-WEBP 
+-HEIC 
+-HEIF 
+
+Audio types supported:
+-WAV
+-MP3 
+-AIFF 
+-AAC 
+-OGG
+-FLAC 
+
+So to ingest files, we need to first convert them to a jpg or png file
+To do so, we are going to use the packages: ImageMgick and Ghostscript
+to convert from pdg to jpg. 
+
+brew install imagemagick ghostscript
+
+convert -density 300 input.pdf -quality 100 output.jpg
+
+To convert from docx to jpg, we'll use libreoffice
+brew install --cask libreoffice
+
+
+ERRORR==========
+
+The below don't work because libreoffice can't be found
+For now, we're not going to focus on it and we'll assume that we only need to conver from pdf to jpg
+docx to pdf
+libreoffice --headless --convert-to pdf file.docx --outdir /path/to/output
+
+pdf to jpg
+convert -density 300 /path/to/output/input.pdf -quality 100 output.jpg
+
+
+STEPS
+
+-Make the converted output files get stored in one folder - a folder gets created for each process
+-The API loops inside the folder and uploads the files as "rubrik" and as "essay" for each step
+
+
+TO start the react app
+Go to the Frontend/frontend location and do 
+npm start
+
+
+Currently writing the code that would take in files, convert them to jpg, 
+parse the output folders and send them to the API
+
+There's something weird with the directory, because if I move the input file to a 
+directory outside of Gemini, it doesn't work 
