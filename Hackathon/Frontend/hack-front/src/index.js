@@ -10,7 +10,6 @@ root.render(
   <React.StrictMode>
     <ChakraProvider>
     <App />
-    <AirbnbCard/>
     </ChakraProvider>
   </React.StrictMode>
 );
