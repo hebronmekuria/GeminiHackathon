@@ -25,9 +25,12 @@ def makeAPIRequest(rubrik_path, essay_path):
      
      #Start by processing the file into a jpg
     convert(rubrik_path)
+
+    #Create empty file for storage
     rubrik_txt="rubrik.txt"
     with open(rubrik_txt, 'w') as file:
         file.write("")
+
      #Find the output directory location
     elements=rubrik_path.split("/")
     filename=elements[-1]
@@ -50,14 +53,15 @@ def makeAPIRequest(rubrik_path, essay_path):
             full_file_path = os.path.join(dirpath, filename)
             img = PIL.Image.open(full_file_path)
             model = genai.GenerativeModel('gemini-pro-vision') 
-            response=model.generate_content(["Transcribe the following file with as much structural accuracy as possible. Keep in mind that this is one of many files that make"
-                                             "up one grading rubrik", img]) 
+            response=model.generate_content(["The following image contains a part of a rubrik"
+                                             "for a class essay. Ingest the contents of the rubrik and give a detailed"
+                                             "explanation of what it is saying", img]) 
             with open(rubrik_txt, 'a') as file:
                 file.write(response.text + '\n')
     
 
     #Part 2 to convert the essay
-    '''  
+      
     convert(essay_path)
     essay_txt = "essay.txt"
     with open(essay_txt, 'w') as file:
@@ -93,6 +97,9 @@ def makeAPIRequest(rubrik_path, essay_path):
     model = genai.GenerativeModel('gemini-pro')
     response=model.generate_content(prompt)
 
-'''
+     #Grading the essay
+     
+
+
 makeAPIRequest("rubrik.pdf","essay.pdf")
 
