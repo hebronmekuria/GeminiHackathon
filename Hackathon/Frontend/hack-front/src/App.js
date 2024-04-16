@@ -1,85 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
-import {Box} from '@chakra-ui/react';
-import {Image} from '@chakra-ui/react';
-import {Badge} from '@chakra-ui/react';
+import "./App.css";
+import { Button, Box, Image, VStack, Heading, Text, Tabs, Tab, TabPanel, TabPanels, TabList } from "@chakra-ui/react";
+import toppurple from "./icons/top-purple.png";
+import topblue from "./icons/top-blue.png";
+import FileUploadButton from "./components/FileUploadButton";
+
 function App() {
   return (
     <div className="App">
-      
-      <Box
-            color='gray.500'
-            fontWeight='semibold'
-            letterSpacing='wide'
-            fontSize='xs'
-            textTransform='uppercase'
-            ml='2'
+      <Box as="section" boxShadow="outline" bg="black" w="100%" h="1000px">
+        {/* <Image src={toppurple} w="395px" h="261px"/>
+        <Image src={topblue}  w="395px" h="261px"/> */}
+        <Tabs>
+          <TabList>
+          <Tab color={'white'}>Home</Tab>
+          <Tab color={'white'}>About Me</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+            <VStack>
+          <Heading as="h1" color="white" mt="65px" fontSize={"56px"}>
+            Gemini Grader
+          </Heading>
+          <Heading
+            as="h2"
+            color="white"
+            mt="65px"
+            ms="30px"
+            me="30px"
+            fontWeight={"normal"}
+            fontSize={"32px"}
           >
-            Hello World
-          </Box>
-      
+            Easy auto grading for any open ended assignments and papers.
+          </Heading>
+        </VStack>
+
+        <VStack>
+          <FileUploadButton bg="#A045FC" w="500px" h="120px" mt="65px">
+            <Heading color="white">Click Me</Heading>
+          </FileUploadButton>
+          <FileUploadButton bg="#5F6FFF" w="700px" h="120px" mt="65px">
+            <Heading color="white">Click Me</Heading>
+          </FileUploadButton>
+          <Button bg="black" w="200px" h="73px" mt="65px" color="white">
+            <Heading>Click Me</Heading>
+          </Button>
+        </VStack>
+            </TabPanel>
+            <TabPanel>
+
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+        
+      </Box>
     </div>
   );
 }
 
 export default App;
-
-export function AirbnbCard() {
-  const property = {
-    imageUrl: 'https://bit.ly/2Z4KKcF',
-    imageAlt: 'Rear view of modern home with pool',
-    beds: 3,
-    baths: 2,
-    title: 'Modern home in city center in the heart of historic Los Angeles',
-    formattedPrice: '$1,900.00',
-    reviewCount: 34,
-    rating: 4,
-  }
-
-  return (
-    <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-      <Image src={property.imageUrl} alt={property.imageAlt} />
-
-      <Box p='6'>
-        <Box display='flex' alignItems='baseline'>
-          <Badge borderRadius='full' px='2' colorScheme='teal'>
-            New
-          </Badge>
-          <Box
-            color='gray.500'
-            fontWeight='semibold'
-            letterSpacing='wide'
-            fontSize='xs'
-            textTransform='uppercase'
-            ml='2'
-          >
-            {property.beds} beds &bull; {property.baths} baths
-          </Box>
-        </Box>
-
-        <Box
-          mt='1'
-          fontWeight='semibold'
-          as='h4'
-          lineHeight='tight'
-          noOfLines={1}
-        >
-          {property.title}
-        </Box>
-
-        <Box>
-          {property.formattedPrice}
-          <Box as='span' color='gray.600' fontSize='sm'>
-            / wk
-          </Box>
-        </Box>
-
-        <Box display='flex' mt='2' alignItems='center'>
-          <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-            {property.reviewCount} reviews
-          </Box>
-        </Box>
-      </Box>
-    </Box>
-  )
-}
