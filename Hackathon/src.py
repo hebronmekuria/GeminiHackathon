@@ -89,7 +89,7 @@ def makeAPIRequest(rubrik_path, essay_path):
             full_file_path = os.path.join(dirpath, filename)
             img = PIL.Image.open(full_file_path)
             model = genai.GenerativeModel('gemini-pro-vision') 
-            response=model.generate_content(["", img]) 
+            response = model.generate_content(["", img]) 
             with open(essay_txt, 'a') as file:
                 file.write(response.text + '\n')
     
@@ -98,7 +98,19 @@ def makeAPIRequest(rubrik_path, essay_path):
     response=model.generate_content(prompt)
 
      #Grading the essay
-     
+    with open(rubrik_txt, 'r') as file:
+    # Read the entire content of the file into a single string
+        rub = file.read()
+    with open(essay_txt, 'r') as file:
+    # Read the entire content of the file into a single string
+        ess = file.read()
+    model = genai.GenerativeModel('gemini-pro')
+    response = model.generate_content("Please grade this essay:" + ess + "based on these grading rubrik's and criteria" + rub + "Give a "
+                                      "grade as well as a detailed description of each piece of the rubrik and why the work deserves the given"
+                                      "grade") 
+    print(response.text)
+    
+
 
 
 makeAPIRequest("rubrik.pdf","essay.pdf")
