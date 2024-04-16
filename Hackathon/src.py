@@ -11,7 +11,6 @@ load_dotenv()
 GOOGLE_API_KEY=os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=GOOGLE_API_KEY)
 
-
 #Function to run pdf-->jpg conversion script
 def convert(input_pdf):
     try:
@@ -26,62 +25,74 @@ def makeAPIRequest(rubrik_path, essay_path):
      
      #Start by processing the file into a jpg
     convert(rubrik_path)
-
+    rubrik_txt="rubrik.txt"
+    with open(rubrik_txt, 'w') as file:
+        file.write("")
      #Find the output directory location
     elements=rubrik_path.split("/")
     filename=elements[-1]
     basename=filename.split(".")[0]
-    ouput_location="/".join(elements[:len(elements)-1])+"/output_"+basename
+    output_location="/".join(elements[:len(elements)-1])+"output_"+basename
 
-
+    
      #Initialize the interaction with the API
-    prompt = "I am going to upload a few files, but I don't want you to do anything until I'm done uploading all the files."
-    model = genai.GenerativeModel('gemini-pro')
-    model.generate_content(prompt)
-
+    # prompt = "I am going to give you multiple pages of a single document as a jpg file, and I don't want you to " 
+    # "process the document until I tell you that all the pages have been provided. However, for each jpg file, "
+    # "I want you to trasncribe the contents of the file back to me. Parse the entire jpg to extract any textual information."
+    # model = genai.GenerativeModel('gemini-pro')
+    # response = model.generate_content(prompt)
 
      #Loop through elements in the output directory
-    for dirpath, dirnames, filenames in os.walk(ouput_location):
+    for dirpath, dirnames, filenames in os.walk(output_location):
+        dirnames.sort()
+        filenames.sort()
         for filename in filenames:
             full_file_path = os.path.join(dirpath, filename)
             img = PIL.Image.open(full_file_path)
             model = genai.GenerativeModel('gemini-pro-vision') 
-            model.generate_content(["", img]) 
+            response=model.generate_content(["Transcribe the following file with as much structural accuracy as possible. Keep in mind that this is one of many files that make"
+                                             "up one grading rubrik", img]) 
+            with open(rubrik_txt, 'a') as file:
+                file.write(response.text + '\n')
     
-    prompt = "The files I have given you are the ordered pages of a rubrik. I want you to use them to evaluate a student's essay. Wait until I give you the essay."
-    model = genai.GenerativeModel('gemini-pro')
-    response=model.generate_content(prompt)
 
     #Part 2 to convert the essay
-         
+    '''  
     convert(essay_path)
+    essay_txt = "essay.txt"
+    with open(essay_txt, 'w') as file:
+        file.write("")
 
      #Find the output directory location
     elements=essay_path.split("/")
     filename=elements[-1]
     basename=filename.split(".")[0]
-    ouput_location="/".join(elements[:len(elements)-1])+"/output_"+basename
-
+    output_location="/".join(elements[:len(elements)-1])+"output_"+basename
+    
 
      #Initialize the interaction with the API
-    prompt = "alright, here is the essay to be evaluated. The essay has multiple pages so don't start grading until I finish uploading all the pages and tell you to start"
+    prompt = "I will give you an essay as multiple jpg files. Do not process the paper until I tell you that " 
+    "I have provided all the pages. Additionally, for each part given, transcribe the contents of the jpg file. "
     model = genai.GenerativeModel('gemini-pro')
-    model.generate_content(prompt)
+    response=model.generate_content(prompt)  
 
 
      #Loop through elements in the output directory
-    for dirpath, dirnames, filenames in os.walk(ouput_location):
+    for dirpath, dirnames, filenames in os.walk(output_location):
+        dirnames.sort()
+        filenames.sort()
         for filename in filenames:
             full_file_path = os.path.join(dirpath, filename)
             img = PIL.Image.open(full_file_path)
             model = genai.GenerativeModel('gemini-pro-vision') 
-            model.generate_content(["", img]) 
+            response=model.generate_content(["", img]) 
+            with open(essay_txt, 'a') as file:
+                file.write(response.text + '\n')
     
-    prompt = "I am done uploading the essay. Please evaludate the essay using the given rubrik, and give a grading. Be detailed and thorough in your grading."
+    prompt = "I am done uploading the essay. Can you first tell me what the essay is about and what the requirements of the rubrik at"
     model = genai.GenerativeModel('gemini-pro')
     response=model.generate_content(prompt)
-    print(response.text)
 
-
+'''
 makeAPIRequest("rubrik.pdf","essay.pdf")
 
