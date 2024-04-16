@@ -167,4 +167,16 @@ Challenge: It isn't reading and transcribing the rubrik correctely since it is s
 
 
 Possible things to try later:
-Instead of transcription, tell the API to just read the file and summarize what it says in detail...?
+Instead of transcription, tell the API to just read the file and summarize what it says in detail...? THIS WORKED
+
+
+Stretch features (Go back and double check what we wrote earlier for stretch)
+-Make entering rubrik optional (grade by correctness or previously uploaded rubrik)
+    -after their choice, process the request differently by entering a different prompt that grades based on correctness
+-Ability to view and browse through previously entered rubriks
+    -you need to name rubriks in this case
+
+
+ChackraUI
+To install it:
+yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
