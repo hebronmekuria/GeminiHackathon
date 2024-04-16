@@ -225,3 +225,7 @@ function App() {
 }
 
 export default App;
+
+
+Box is a div under the hood and can be styled in any way that a div can be styled
+
