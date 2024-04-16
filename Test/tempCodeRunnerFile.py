@@ -1,0 +1,1 @@
+pdf_text = extractText("rubrik.pdf")
