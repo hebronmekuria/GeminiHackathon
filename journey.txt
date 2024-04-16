@@ -227,5 +227,99 @@ function App() {
 export default App;
 
 
+BOX 
+
 Box is a div under the hood and can be styled in any way that a div can be styled
 
+Layout components in Chakra
+Flex, Box, Stack, Vstack, Hstack
+
+Box: Acts as a section or div
+
+takes bg, w, h, color, and more
+
+<Box as = 'section' /> to render it as a section
+
+
+FLEX 
+
+it is a box under the hood and allows you to distribute items and add space
+between items
+
+Has props: direction, align, grow, shrink, justify, etc....
+
+Children of the flex are either in the horizontal or vertical direction
+
+by default, the children are aligned in a row, but you can change it by doing direction = 'column'
+
+the main axis is whatever longest axis 
+
+example of usage:
+
+justify = 'space-between ;
+align = 'center'
+
+
+STACK 
+
+used to add spacing between elements 
+under the hood, it's a flex component
+allows for uniform spacing between items
+By default, aligns items as column but can be changed using direction = ""
+
+VSTACK 
+vertical stack 
+to add space between elements in the vertical direction and center them 
+
+HSTACK 
+horizontal stack 
+to add space between elements in the horizontal direction and center them 
+
+
+<Stack spacing = 24px direction="row" > </Stack>
+
+if you're using VSTACK or HSTACk, you don't need to use the direction prop
+VSTACK and HSTACK add centering that direction = " " doesn't apply
+
+
+TEXT 
+
+to render text and paragraph
+to do italics <Text as="i"> This is the text </Text>
+
+<Text isTruncated> </Text>   --- To truncate text that is too long
+<Text noofLines =3 ></Text> --- To truncate after three lines 
+
+
+HEADING
+
+<Heading as "h1"> This is I </Heading> --- this can also be replaced by h2, h3, etc...
+if the as is not there, it renders h2 by default 
+other usage
+fontSize = '40px'
+
+
+STYLE PROPS 
+
+these styl props allow you to style a component but passing styles directly into it 
+normally written in camel case
+
+for example
+<Box m={2}></Box> ---- m means margin
+
+other usage:
+maxW means "maximum width"
+
+plenty of docs to check...
+
+also look at the indivial component docs to see which style props go with which components
+
+
+PSEUDO STYLE PROPS
+used to style the hover, active, inactive,etc states of components
+
+you need to use _ before the name of the prop. 
+
+Examples
+
+<Button colorScheme = 'red' _hover = {{background: 'blue'}} _focus = {{background: 'yellow'}} >Click Me</Button>
