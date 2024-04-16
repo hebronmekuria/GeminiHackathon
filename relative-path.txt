@@ -1,0 +1,11 @@
+Relative File Paths 
+'.' reprensents the current directory
+'./flie.txt' refers to a file called file.txt in the current directory
+
+'..' represents parent directory upto one level 
+'../file.txt' refers to a file you will find if you go out of the current directory once 
+
+'../../folder/file.txt' -- move up two directories from the current one, and then go inside the directory called 'folder'
+
+'folder/subfolder/file.txt' -- start from the current directory and move into 'folder' then into 'subfolder' to find 'file.txt'
+
