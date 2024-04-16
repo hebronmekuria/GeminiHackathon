@@ -157,3 +157,14 @@ Gemini doesn't remember the conversation with the way that I had things
 To use the chat function, it doesn't seem to recognize image formats...
 
 What to do..
+
+What I tried
+Creating a clean file before each file that needs to be uploaded and populating the file with a transcription from the API
+
+Then, using those transcriptions to later read from and do the Grading
+
+Challenge: It isn't reading and transcribing the rubrik correctely since it is shown in a table.
+
+
+Possible things to try later:
+Instead of transcription, tell the API to just read the file and summarize what it says in detail...?
