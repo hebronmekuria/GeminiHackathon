@@ -1,12 +1,11 @@
 {
-  "name": "frontend",
+  "name": "hack-front",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@nextui-org/button": "^2.0.27",
-    "@nextui-org/react": "^2.2.10",
-    "@nextui-org/system": "^2.0.15",
-    "@nextui-org/theme": "^2.1.18",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -17,7 +16,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=3006 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

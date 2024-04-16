@@ -180,3 +180,48 @@ Stretch features (Go back and double check what we wrote earlier for stretch)
 ChackraUI
 To install it:
 yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+I ran into this error when practicing with chakra UI 
+Cannot read properties of null (reading 'useMemo') TypeError: Cannot read properties of null (reading 'useMemo') at useMemo
+
+and what fixed it was updated react-redux by doing yarn add react-redux
+
+After solving this, nothing is being rendered still
+so ima try to install chakra using npm, although I doubt it makes a difference
+
+I just redid everything with Chakra and it works
+
+Steps to Setting up ChackraUI
+First, install it inside the reach app 
+yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+Second, include the wrapper inside the index.js file:
+  <React.StrictMode>
+    <ChakraProvider>
+    <App />
+    <AirbnbCard/>
+    </ChakraProvider>
+  </React.StrictMode>
+
+Next, In the App.js file or other component files, just start importing and using 
+the different components
+function App() {
+  return (
+    <div className="App">
+      
+      <Box
+            color='gray.500'
+            fontWeight='semibold'
+            letterSpacing='wide'
+            fontSize='xs'
+            textTransform='uppercase'
+            ml='2'
+          >
+            Hello World
+          </Box>
+      
+    </div>
+  );
+}
+
+export default App;

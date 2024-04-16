@@ -58,3 +58,8 @@ tells them historical facts about the landmark
 -AI Teaching Assistant 
 Teacher uploads a video of the classroom and the AI can tell which student
 is fidgety, looking confused or needs special attention
+
+
+-Coding Helper
+
+Screen Records your coding sessions, and knows when you run into an error and what you did to solve it. Then uploads this automatically to stack overflow
