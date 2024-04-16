@@ -7,7 +7,7 @@ import FileUploadButton from "./components/FileUploadButton";
 function App() {
   return (
     <div className="App">
-      <Box as="section" boxShadow="outline" bg="black" w="100%" h="1000px">
+      <Box as="section" boxShadow="outline" bg="black" w="100%" h="100%">
         {/* <Image src={toppurple} w="395px" h="261px"/>
         <Image src={topblue}  w="395px" h="261px"/> */}
         <Tabs>
