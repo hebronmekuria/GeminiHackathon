@@ -1,2 +1,2 @@
-##Gemini Hackathon Project
-#Full-stack Project
+Gemini Hackathon Project
+Full-stack Project
