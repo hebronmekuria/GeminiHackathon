@@ -344,3 +344,6 @@ PRAGMA table_info(file_paths);
 
 Before any operations involving a daatabase, we need to use the create_connections
 function
+
+Trying to get those cool graphics...
+Going to create a test UI by itself
