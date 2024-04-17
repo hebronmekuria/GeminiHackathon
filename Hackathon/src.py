@@ -86,7 +86,7 @@ def main(rubrik_path, essay_path):
     makeAPIRequest(rub,ess)
             
 
-main("","essay.pdf")
+# main("","essay.pdf")
   
 
 
