@@ -1,0 +1,9 @@
+Has Crazy graphics
+What to install:
+
+npm i framer-motion clsx tailwind-merge @tabler/icons-react 
+
+location -- inside the react app
+
+Then:
+create a utility file that expors a function -- we'll name the 

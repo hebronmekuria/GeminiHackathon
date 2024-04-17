@@ -50,7 +50,7 @@ def api_call():
         essay_paths = retrieve_file_paths(conn, "3", 'essay')
     except:
         return "Error: No essays found"
-    #result = main(rubrik_paths,essay_paths)
-    result = "Hurray"
-    print(result)
-    return result
+    result = main(rubrik_paths,essay_paths)
+    
+    
+    return jsonify({"Grades": result}), 200
