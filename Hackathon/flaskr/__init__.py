@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 from flask_cors import CORS
-from .processes import bp as upload_bp
+from .app import bp as upload_bp
 
 
 def create_app(test_config=None):
