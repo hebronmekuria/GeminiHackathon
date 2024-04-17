@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Button } from '@chakra-ui/react';
 
-function FileUploadButton({ children, ...props }) {
+function FileUploadButton({ children, nature, userId, ...props }) {
   const fileInputRef = useRef(null);
 
   const handleButtonClick = () => {
@@ -13,7 +13,6 @@ function FileUploadButton({ children, ...props }) {
     if (file) {
       console.log(file); // Debugging: log file info
 
-      // Prepare FormData to send the file
       const formData = new FormData();
       formData.append('file', file); // 'file' is the key
 
@@ -21,7 +20,10 @@ function FileUploadButton({ children, ...props }) {
         const response = await fetch('http://127.0.0.1:5000/upload/file', {
           method: 'POST',
           body: formData,
-          // Headers are set automatically by the browser when using FormData
+          headers: {
+            'User-ID': userId, // Use userId from props
+            'Nature': nature // Use nature from props
+          },
         });
 
         if (response.ok) {
