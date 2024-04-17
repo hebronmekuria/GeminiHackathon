@@ -30,7 +30,7 @@ function App() {
             fontWeight={"normal"}
             fontSize={"32px"}
           >
-            Easy auto grading for any open ended assignments and papers.
+            Easy auto grading for open ended assignments and papers.
           </Heading>
         </VStack>
 
