@@ -323,3 +323,24 @@ you need to use _ before the name of the prop.
 Examples
 
 <Button colorScheme = 'red' _hover = {{background: 'blue'}} _focus = {{background: 'yellow'}} >Click Me</Button>
+
+exiting from a sqlite CLI 
+
+To run the database script
+Go inside the directory where the .py database script is and run
+python3.py
+
+to get into the sqlite CLI
+sqlite3 file_paths.db---only because this is the name of the db as named in the 
+first function in db that creates the database
+
+To check which tables are inside the database:
+
+.tables
+
+to verify the structure of the table:
+PRAGMA table_info(file_paths);
+
+
+Before any operations involving a daatabase, we need to use the create_connections
+function

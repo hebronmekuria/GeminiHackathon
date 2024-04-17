@@ -63,3 +63,8 @@ is fidgety, looking confused or needs special attention
 -Coding Helper
 
 Screen Records your coding sessions, and knows when you run into an error and what you did to solve it. Then uploads this automatically to stack overflow
+
+
+-Youtube Summary
+Chrome extension that summarizes YouTube videos
+
