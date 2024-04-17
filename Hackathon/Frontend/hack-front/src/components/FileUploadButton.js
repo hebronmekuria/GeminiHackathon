@@ -7,36 +7,42 @@ function FileUploadButton({ children, ...props }) {
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
-  const handleFileUpload = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);  // 'file' is the key expected on the server side
-  
-    try {
-      const response = await fetch('http://127.0.0.1:5000', {
-        method: 'POST',
-        body: formData,
-      });
-      const result = await response.text();  // Assuming the response is plain text
-      console.log(result);
-    } catch (error) {
-      console.error('Error uploading the file:', error);
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      console.log(file); // Debugging: log file info
+
+      // Prepare FormData to send the file
+      const formData = new FormData();
+      formData.append('file', file); // 'file' is the key
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/upload/file', {
+          method: 'POST',
+          body: formData,
+          // Headers are set automatically by the browser when using FormData
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('File uploaded successfully', data); // Process response data
+        } else {
+          console.error('Failed to upload file:', response.status, await response.text());
+        }
+      } catch (error) {
+        console.error('Network error:', error);
+      }
     }
   };
-  
 
-  
   return (
     <>
       <input
         type="file"
         style={{ display: 'none' }}
         ref={fileInputRef}
-        onChange={(event) => {
-          const file = event.target.files[0];
-          if (file) {
-            handleFileUpload(file);
-          }
-        }}
+        onChange={handleFileChange}
       />
       <Button onClick={handleButtonClick} {...props}>
         {children}
