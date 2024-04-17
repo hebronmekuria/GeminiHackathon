@@ -63,7 +63,7 @@ def makeAPIRequest(rubrik, essay):
                                       "grade") 
     else:
         response = model.generate_content("Please grade this student's work based on correctness" + essay)
-    print(response.text)
+    return response.text
     
 def main(rubrik_path, essay_path):
     extract(essay_path,'essay')
@@ -83,7 +83,7 @@ def main(rubrik_path, essay_path):
             extract(rubrik_path,'rubrik')
             with open(storage_file, 'r') as file:
                 rub = file.read()
-    makeAPIRequest(rub,ess)
+    return makeAPIRequest(rub,ess)
             
 
 # main("","essay.pdf")
