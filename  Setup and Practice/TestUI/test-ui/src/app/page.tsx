@@ -4,6 +4,7 @@ import SubmitButton from "./components/SubmitButton";
 import ResultDisplay from "./components/ResultDisplay";
 import {
   AttachmentIcon,
+  Avatar,
   Box,
   ChakraProvider,
   Heading,
@@ -20,6 +21,7 @@ import React, { useState } from "react";
 import { TypewriterEffectDemo } from "./components/TypeWriter";
 import { Vortex } from "./components/ui/vortex";
 import { MovingBorderDemo } from "./components/ResetDBButton";
+import { EvervaultCardDemo } from "./components/EverVault";
 
 export default function Home() {
   const [data, setData] = useState<any | null>(null);
@@ -54,6 +56,7 @@ export default function Home() {
             <TabList>
               <Tab color={"white"}>Home</Tab>
               <Tab color={"white"}>Result</Tab>
+              <Tab color={'white'}>Dashboard</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -113,10 +116,17 @@ export default function Home() {
                     <Text fontSize={20}>Submit</Text>
                   </SubmitButton>
                 </VStack>
-                <MovingBorderDemo/>
+                {/* <MovingBorderDemo/> */}
               </TabPanel>
               <TabPanel>
                 <ResultDisplay data={data} error={error} />
+              </TabPanel>
+              <TabPanel>
+                <Box borderWidth='1px' w='1000px' h="1000%" borderRadius='lg' >
+                  <VStack>
+                  <EvervaultCardDemo></EvervaultCardDemo>
+                  </VStack>
+                </Box>
               </TabPanel>
             </TabPanels>
           </Tabs>
