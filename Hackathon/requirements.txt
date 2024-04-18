@@ -1,11 +1,6 @@
 absl-py==1.4.0
 aiohttp==3.8.4
 aiosignal==1.3.1
-<<<<<<< HEAD
-=======
-alembic==1.13.1
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
-apturl==0.5.2
 astunparse==1.6.3
 async-timeout==4.0.2
 attrs==22.2.0
@@ -50,26 +45,8 @@ duplicity==0.8.21
 email_validator==2.1.1
 eventlet==0.34.2
 fasteners==0.14.1
-<<<<<<< HEAD
 filelock==3.12.2
 Flask==2.3.2
-=======
-filelock==3.11.0
-Flask==2.2.3
-flask-babel==4.0.0
-Flask-Compress==1.14
-Flask-Cors==3.0.10
-Flask-Gravatar==0.5.0
-Flask-Login==0.6.3
-Flask-Mail==0.9.1
-Flask-Migrate==4.0.6
-Flask-Paranoid==0.3.0
-Flask-Principal==0.4.0
-Flask-Security-Too==5.3.3
-Flask-SocketIO==5.3.6
-Flask-SQLAlchemy==3.1.1
-Flask-WTF==1.2.1
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
 flatbuffers==23.1.21
 fonttools==4.43.1
 frozenlist==1.3.3
@@ -161,10 +138,6 @@ portend==3.1.0
 proto-plus==1.23.0
 protobuf==4.25.3
 psutil==5.9.8
-<<<<<<< HEAD
-=======
-psycopg==3.1.12
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
 psycopg-binary==3.1.12
 ptyprocess==0.7.0
 py4j==0.10.9.7
@@ -174,10 +147,6 @@ pycairo==1.20.1
 pycodestyle==2.10.0
 pycparser==2.21
 pycups==2.0.1
-<<<<<<< HEAD
-=======
-pydantic==1.10.7
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
 PyDrive==1.3.1
 pygame==2.5.2
 Pygments==2.17.2
@@ -205,10 +174,6 @@ python-socketio==5.11.1
 pytz==2023.4
 pyxdg==0.27
 PyYAML==5.4.1
-<<<<<<< HEAD
-=======
-qrcode==7.4.2
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
 regex==2022.10.31
 reportlab==3.6.8
 requests==2.25.1
@@ -225,10 +190,6 @@ simple-websocket==1.0.0
 six==1.16.0
 soupsieve==2.5
 speaklater3==1.4
-<<<<<<< HEAD
-=======
-SQLAlchemy==2.0.28
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
 sqlparse==0.4.4
 ssh-import-id==5.11
 sshtunnel==0.4.0
@@ -236,10 +197,6 @@ sympy==1.11.1
 systemd-python==234
 tempora==5.2.2
 tqdm==4.64.1
-<<<<<<< HEAD
-=======
-triton==2.0.0
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
 ttystatus==0.38
 typer==0.9.0
 typing_extensions==4.5.0
@@ -255,11 +212,7 @@ usb-creator==0.3.7
 user-agents==2.2.0
 virtualenv==20.25.1
 wadllib==1.3.6
-<<<<<<< HEAD
 Werkzeug>=2.3.3
-=======
-Werkzeug==2.2.3
->>>>>>> 0d07757fee7456996cf06a2725f298c26cf6894a
 wordcloud==1.9.3
 wrapt==1.14.1
 wsproto==1.2.0
