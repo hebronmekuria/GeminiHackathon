@@ -347,3 +347,5 @@ function
 
 Trying to get those cool graphics...
 Going to create a test UI by itself
+
+To server the flask server, you need to be inside the Hackaton page

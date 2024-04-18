@@ -11,10 +11,12 @@ module.exports = {
   theme: {
     // rest of the code
   },
+  
   plugins: [
     // rest of the code
     addVariablesForColors,
   ],
+  
 };
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
@@ -27,4 +29,6 @@ function addVariablesForColors({ addBase, theme }) {
   addBase({
     ":root": newVars,
   });
+  
 }
+

@@ -5,18 +5,27 @@ export function TypewriterEffectDemo() {
   const words = [
     {
       text: "Grade",
+      className: "text-indigo-500 dark:text-indigo-500",
     },
     {
-      text: "anything",
+      text: "with",
+      className: "text-indigo-500 dark:text-indigo-500",
+    },
+    {
+      text: "Care",
+      className: "text-indigo-500 dark:text-indigo-500",
+    },
+    {
+      text: "and",
+      className: "text-indigo-500 dark:text-indigo-500",
     },
 
+    {
+      text: "Ease.",
+      className: "text-indigo-500 dark:text-indigo-500",
+    },
   ];
   return (
-    <div className="flex flex-col items-center justify-center h-[40rem] ">
       <TypewriterEffect words={words} />
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10">
-        
-      </div>
-    </div>
   );
 }
