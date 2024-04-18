@@ -23,7 +23,6 @@ charset-normalizer==3.1.0
 cheroot==9.0.0
 CherryPy==18.8.0
 chronological==0.1.1
-cliapp==1.20180812.1
 click==8.1.7
 cmake==3.26.3
 cmdtest==0.32+git
