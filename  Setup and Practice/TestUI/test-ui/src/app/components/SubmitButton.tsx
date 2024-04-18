@@ -1,6 +1,6 @@
 "use client";
-import React from 'react';
-import { Button, ButtonProps } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { Button, ButtonProps, Spinner } from '@chakra-ui/react';
 
 interface SubmitButtonProps extends ButtonProps {
   userId: string;
@@ -17,7 +17,10 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   onFetchError, 
   ...props
 }) => {
+    const [isLoading, setIsLoading] = useState(false);  // State to track loading
+
     const handleButtonClick = async () => {
+        setIsLoading(true); // Start loading
         try {
             const response = await fetch('http://127.0.0.1:5000/upload/process', {
                 method: 'POST',
@@ -38,18 +41,17 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
                 onFetchError('An unknown error occurred');
             }
         }
+        setIsLoading(false); // Stop loading
     };
 
     return (
-
-        <button className="p-[3px] relative" onClick={handleButtonClick}>
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-        <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-          {children}
-        </div>
-        </button>
-        
+        <>
+        <Button {...props} onClick={handleButtonClick} isLoading={isLoading} loadingText="Processing...">
+          {isLoading ? <Spinner /> : children}
+        </Button>
+        </>
     );
 }
 
 export default SubmitButton;
+

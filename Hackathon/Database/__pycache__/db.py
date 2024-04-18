@@ -58,6 +58,16 @@ def retrieve_file_paths(conn, user_id, nature):
         print(e)
         return []
     
+def reset_table(conn):
+    """ Remove all entries from the file_paths table """
+    try:
+        c = conn.cursor()
+        c.execute("DELETE FROM file_paths")
+        conn.commit()
+    except Error as e:
+        print(e)
+
+    
 
 def main():
     # Create a database connection

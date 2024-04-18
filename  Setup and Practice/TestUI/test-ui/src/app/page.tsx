@@ -1,11 +1,7 @@
 "use client";
-import Image from "next/image";
-import { MacbookScrollDemo } from "./components/macbook";
-import { AuroraBackground } from "./components/ui/aurora-background";
 import FileUploadButton from "./components/FileUploadButton";
 import SubmitButton from "./components/SubmitButton";
 import ResultDisplay from "./components/ResultDisplay";
-import UploadConfirmation from "./components/Confirmation";
 import {
   AttachmentIcon,
   Box,
@@ -22,23 +18,26 @@ import {
 } from "../../lib/mui";
 import React, { useState } from "react";
 import { TypewriterEffectDemo } from "./components/TypeWriter";
-import { VortexDemoSecond } from "./components/Vortex";
 import { Vortex } from "./components/ui/vortex";
-import { IconBold } from "@tabler/icons-react";
 
 export default function Home() {
   const [data, setData] = useState<any | null>(null);
   const [error, setError] = useState<string>("");
+  const [tabIndex, setTabIndex] = useState(0); // Tab index state
 
   const handleFetchSuccess = (fetchedData: any) => {
-    // Replace `any` with the specific type of fetchedData
     setData(fetchedData);
-    setError(""); // Clear any existing errors
+    setError(""); 
+    setTabIndex(1);
   };
 
   const handleFetchError = (errorMessage: string) => {
     setError(errorMessage);
-    setData(null); // Clear any existing data
+    setData(null);
+    setTabIndex(1);
+  };
+  const handleTabsChange = (index: number) => {
+    setTabIndex(index); 
   };
   return (
     <main style={{ minHeight: "100vh" }}>
@@ -50,7 +49,7 @@ export default function Home() {
           baseHue={120}
           className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full min-h-screen" // min-h-screen to fill the height of the screen
         >
-          <Tabs>
+          <Tabs  index={tabIndex} onChange={handleTabsChange}>
             <TabList>
               <Tab color={"white"}>Home</Tab>
               <Tab color={"white"}>About Me</Tab>
@@ -58,7 +57,6 @@ export default function Home() {
             <TabPanels>
               <TabPanel>
                 <VStack>
-                  <ResultDisplay data={data} error={error} />
                   <Heading as="h1" color="white" mt="65px" fontSize={"56px"}>
                     Gemini Grader
                   </Heading>
@@ -110,7 +108,9 @@ export default function Home() {
                   </SubmitButton>
                 </VStack>
               </TabPanel>
-              <TabPanel></TabPanel>
+              <TabPanel>
+              <ResultDisplay data={data} error={error} />
+              </TabPanel>
             </TabPanels>
           </Tabs>
         </Vortex>

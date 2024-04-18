@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../Database/__pycache__'))
-from db import create_connection, store_file_path, retrieve_file_paths
+from db import create_connection, store_file_path, retrieve_file_paths, reset_table
 
 bp = Blueprint('upload', __name__, url_prefix='/upload')
 
@@ -53,4 +53,14 @@ def api_call():
     result = main(rubrik_paths,essay_paths)
     
     
-    return jsonify({"Grades": result}), 200
+    return jsonify(result)
+
+@bp.route('/reset', methods=['POST'])
+def reset_database():
+    """ Endpoint to reset the file_paths table in the database """
+    conn = create_connection()
+    try:
+        reset_table(conn)
+        return jsonify({"message": "Database reset successfully"})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

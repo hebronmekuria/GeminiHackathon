@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { Button, ButtonProps } from "../../../lib/mui";
-import Confirmation from "./Confirmation";
+import { Button, ButtonProps, VStack } from "../../../lib/mui";
+import UploadConfirmation from "./Confirmation";
 
 // Define the type for the props
 interface FileUploadButtonProps {}
@@ -22,8 +22,11 @@ function FileUploadButton({
   const handleButtonClick = () => {
     fileInputRef.current?.click();
   };
-  const [uploadStatus, setUploadStatus] = useState<{ success: boolean; message: string } | null>(null);
-
+  const [uploadStatus, setUploadStatus] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -47,25 +50,32 @@ function FileUploadButton({
         if (response.ok) {
           const data = await response.json();
           console.log("File uploaded successfully", data); // Process response data
-          setUploadStatus({ success: true, message: "File uploaded successfully!" });
+          setUploadStatus({
+            success: true,
+            message: "File uploaded successfully! ",
+          });
+          setShowConfirmation(true); // Show confirmation
+          setTimeout(() => setShowConfirmation(false), 5000); // Hide after 5 seconds
         } else {
           console.error(
             "Failed to upload file:",
             response.status,
             await response.text()
           );
-          setUploadStatus({ success: false, message: "Failed to upload file." });
+          setUploadStatus({
+            success: false,
+            message: "Failed to upload file.",
+          });
         }
       } catch (error) {
         console.error("Network error:", error);
       }
     }
-
   };
 
   return (
     <>
-    {uploadStatus && <Confirmation message={uploadStatus.message} />}
+      <VStack>
       <input
         type="file"
         style={{ display: "none" }}
@@ -78,6 +88,10 @@ function FileUploadButton({
           {children}
         </div>
       </button>
+      <div>
+      {showConfirmation && <UploadConfirmation message={uploadStatus?.message || ''} />}
+      </div>
+      </VStack>
     </>
   );
 }
