@@ -8,6 +8,7 @@ import ResultDisplay from "./components/ResultDisplay";
 import { Box, ChakraProvider, Heading, Tab, Tabs, TabList, TabPanels, TabPanel, VStack } from '../../lib/mui';
 import React, { useState } from 'react';
 import { BackgroundBoxesDemo } from "./components/BackgroundBoxesDemo";
+import { TypewriterEffectDemo } from "./components/TypeWriter";
 
 export default function Home() {
   const [data, setData] = useState<any | null>(null);
@@ -38,17 +39,7 @@ export default function Home() {
                 <Heading as="h1" color="white" mt="65px" fontSize={"56px"}>
                   Gemini Grader
                 </Heading>
-                <Heading
-                  as="h2"
-                  color="white"
-                  mt="65px"
-                  ms="30px"
-                  me="30px"
-                  fontWeight={"normal"}
-                  fontSize={"32px"}
-                >
-                  Easy auto grading for open ended assignments and papers.
-                </Heading>
+                <TypewriterEffectDemo/>
               </VStack>
               <VStack>
                 <FileUploadButton bg="#A045FC" w="500px" h="120px" mt="65px" userId="3" nature="rubrik">
