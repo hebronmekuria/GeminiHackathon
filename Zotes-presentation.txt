@@ -3,4 +3,14 @@ To include in the presentation
 -Use Cases
 -Challenges
 -Technologies used
+-Flask
+-Python
+-Typescript
+-React
+-Javascript
+-NextJS
+-POSTMAN
+-sqlite
+-ChakraUI
+-AcentrinityUI
 -Idea

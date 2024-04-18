@@ -32,10 +32,10 @@ function FileUploadButton({
   ) => {
     const file = event.target.files?.[0];
     if (file) {
-      console.log(file); // Debugging: log file info
+      console.log(file); 
 
       const formData = new FormData();
-      formData.append("file", file); // 'file' is the key
+      formData.append("file", file); 
 
       try {
         const response = await fetch("http://127.0.0.1:5000/upload/file", {
@@ -49,12 +49,12 @@ function FileUploadButton({
 
         if (response.ok) {
           const data = await response.json();
-          console.log("File uploaded successfully", data); // Process response data
+          console.log("File uploaded successfully", data); 
           setUploadStatus({
             success: true,
             message: "File uploaded successfully! ",
           });
-          setShowConfirmation(true); // Show confirmation
+          setShowConfirmation(true); 
           setTimeout(() => setShowConfirmation(false), 5000); // Hide after 5 seconds
         } else {
           console.error(

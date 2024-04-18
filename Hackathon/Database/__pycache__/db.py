@@ -46,14 +46,14 @@ def store_file_path(conn, user_id, file_path, nature):
         print(e)
 
 def retrieve_file_paths(conn, user_id, nature):
-    """ Query all file paths by user_id """
+    """ Query all file paths by user_id and nature """
     try:
         cur = conn.cursor()
         cur.execute("SELECT file_path FROM file_paths WHERE user_id=? AND nature=?", (user_id, nature))
         rows = cur.fetchall()
-        print(rows)
-        result = [row[0] for row in rows]
-        return result[0]
+        print("Retrieved rows:", rows)
+        # Return a list of file paths
+        return [row[0] for row in rows]
     except Error as e:
         print(e)
         return []

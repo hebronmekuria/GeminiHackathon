@@ -1,4 +1,5 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, Flask, request, jsonify
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import os
 import sys
@@ -7,6 +8,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../Database/__pycache__
 from db import create_connection, store_file_path, retrieve_file_paths, reset_table
 
 bp = Blueprint('upload', __name__, url_prefix='/upload')
+CORS(bp)
+
 
 @bp.route('/file', methods=['POST'])
 def upload_file():
@@ -61,6 +64,17 @@ def reset_database():
     conn = create_connection()
     try:
         reset_table(conn)
-        return jsonify({"message": "Database reset successfully"})
+        return jsonify({"message": "Database reset"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@bp.route('/files', methods=['GET'])
+def get_files():
+    user_id = request.args.get('user_id', default="3")  # Default user_id is "3"
+    nature = request.args.get('nature', default="rubrik")  # Default nature is "rubrik"
+    conn = create_connection()
+    file_paths = retrieve_file_paths(conn, user_id, nature)
+    if file_paths:
+        return jsonify({"file_paths": file_paths}), 200
+    else:
+        return jsonify({"error": "No files found for the specified criteria"}), 404

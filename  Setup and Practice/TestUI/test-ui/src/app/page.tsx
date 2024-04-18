@@ -19,6 +19,7 @@ import {
 import React, { useState } from "react";
 import { TypewriterEffectDemo } from "./components/TypeWriter";
 import { Vortex } from "./components/ui/vortex";
+import { MovingBorderDemo } from "./components/ResetDBButton";
 
 export default function Home() {
   const [data, setData] = useState<any | null>(null);
@@ -27,7 +28,7 @@ export default function Home() {
 
   const handleFetchSuccess = (fetchedData: any) => {
     setData(fetchedData);
-    setError(""); 
+    setError("");
     setTabIndex(1);
   };
 
@@ -37,7 +38,7 @@ export default function Home() {
     setTabIndex(1);
   };
   const handleTabsChange = (index: number) => {
-    setTabIndex(index); 
+    setTabIndex(index);
   };
   return (
     <main style={{ minHeight: "100vh" }}>
@@ -49,10 +50,10 @@ export default function Home() {
           baseHue={120}
           className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full min-h-screen" // min-h-screen to fill the height of the screen
         >
-          <Tabs  index={tabIndex} onChange={handleTabsChange}>
+          <Tabs index={tabIndex} onChange={handleTabsChange}>
             <TabList>
               <Tab color={"white"}>Home</Tab>
-              <Tab color={"white"}>About Me</Tab>
+              <Tab color={"white"}>Result</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -66,19 +67,22 @@ export default function Home() {
                 </VStack>
                 <VStack spacing={10}>
                   <HStack>
-                  <FileUploadButton
-                    bg="#A045FC"
-                    w="500px"
-                    h="120px"
-                    mt="65px"
-                    userId="3"
-                    nature="rubrik"
-                  >
-                    <HStack>
-                      <AttachmentIcon boxSize={30} color={"white"}/>
-                    <Text fontSize={32} color="white">Upload Rubrik</Text>
-                    </HStack>
-                  </FileUploadButton>
+                    <FileUploadButton
+                      bg="#A045FC"
+                      w="500px"
+                      h="120px"
+                      mt="65px"
+                      userId="3"
+                      nature="rubrik"
+                    >
+                      <HStack>
+                        <AttachmentIcon boxSize={30} color={"white"} />
+                        <Text fontSize={32} color="white">
+                          Upload Rubrik
+                        </Text>
+                      </HStack>
+                    </FileUploadButton>
+                  
                   </HStack>
                   <FileUploadButton
                     bg="#5F6FFF"
@@ -89,8 +93,10 @@ export default function Home() {
                     nature="essay"
                   >
                     <HStack>
-                    <AttachmentIcon boxSize={30} color={"white"}/>
-                    <Text fontSize={32} color="white" >Upload Essay </Text>
+                      <AttachmentIcon boxSize={30} color={"white"} />
+                      <Text fontSize={32} color="white">
+                        Upload Assignment{" "}
+                      </Text>
                     </HStack>
                   </FileUploadButton>
                   <SubmitButton
@@ -107,9 +113,10 @@ export default function Home() {
                     <Text fontSize={20}>Submit</Text>
                   </SubmitButton>
                 </VStack>
+                <MovingBorderDemo/>
               </TabPanel>
               <TabPanel>
-              <ResultDisplay data={data} error={error} />
+                <ResultDisplay data={data} error={error} />
               </TabPanel>
             </TabPanels>
           </Tabs>
