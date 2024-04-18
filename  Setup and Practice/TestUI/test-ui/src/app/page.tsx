@@ -7,6 +7,7 @@ import SubmitButton from './components/SubmitButton'
 import ResultDisplay from "./components/ResultDisplay";
 import { Box, ChakraProvider, Heading, Tab, Tabs, TabList, TabPanels, TabPanel, VStack } from '../../lib/mui';
 import React, { useState } from 'react';
+import { BackgroundBoxesDemo } from "./components/BackgroundBoxesDemo";
 
 export default function Home() {
   const [data, setData] = useState<any | null>(null);
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <main>
     <ChakraProvider>
+
     <Box as="section" boxShadow="outline" bg="black" w="100%" h="100%">
         <Tabs>
           <TabList>
@@ -55,7 +57,7 @@ export default function Home() {
                 <FileUploadButton bg="#5F6FFF" w="700px" h="120px" mt="65px" userId="3" nature="essay">
                   <Heading color="white">Click Me</Heading>
                 </FileUploadButton>
-                <SubmitButton bg="black" w="200px" h="73px" mt="65px" color="white" onFetchSuccess={handleFetchSuccess} onFetchError={handleFetchError}  >
+                <SubmitButton bg="black" w="200px" h="73px" mt="65px" color="white" onFetchSuccess={handleFetchSuccess} onFetchError={handleFetchError} userId="3" nature="rubrik">
                   <Heading>Click Me</Heading>
                 </SubmitButton>
               </VStack>
@@ -65,6 +67,7 @@ export default function Home() {
             </TabPanel>
           </TabPanels>
         </Tabs>
+        
       </Box>
      </ChakraProvider>
     </main>

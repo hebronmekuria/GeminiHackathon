@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState } from 'react';
-import { Button, Box, VStack, Heading, Tabs, Tab, TabPanel, TabPanels, TabList } from "@chakra-ui/react";
+import { Box, VStack, Heading, Tabs, Tab, TabPanel, TabPanels, TabList } from "@chakra-ui/react";
 import FileUploadButton from "./components/FileUploadButton";
 import SubmitButton from "./components/SubmitButton";
 import ResultDisplay from "./components/ResultDisplay"
