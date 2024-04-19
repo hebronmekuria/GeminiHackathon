@@ -1,7 +1,9 @@
 // ResultDisplay.tsx
 "use client";
 import React from 'react';
-import { Box, Text, VStack, ButtonProps } from '../../../lib/mui';
+import { Box, Text, VStack, ButtonProps, Heading } from '../../../lib/mui';
+import { motion } from "framer-motion";
+import { AuroraBackground } from './ui/aurora-background';
 
 interface ResultDisplayProps extends ButtonProps {
   data?: any;
@@ -9,17 +11,11 @@ interface ResultDisplayProps extends ButtonProps {
 }
 
 const ResultDisplay: React.FC<ResultDisplayProps> = ({ data, error }) => {
-  // Custom function to format the data
   const formatData = (data: any) => {
     if (!data) return "No data available.";
-
-    // Check if data is an object and handle it accordingly
     if (typeof data === 'object' && data !== null) {
-      // Create a readable string from key-value pairs
       return Object.entries(data).map(([key, value]) => `${key}: ${value}`).join('\n');
     }
-    
-    // If data is a string or other format, return it directly
     return data;
   };
 
@@ -31,11 +27,19 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ data, error }) => {
         </Box>
       )}
       {data && (
-        <Box p={4} bg="white" w='100%' h='100%'>
-          <Text fontFamily={'sans-serif'} color="black" fontWeight="bold" whiteSpace="pre-wrap">
-            Result: {formatData(data)}
-          </Text>
-        </Box>
+        <AuroraBackground width={'100%'} cellPadding={30}>
+          <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+              className="relative flex flex-col gap-4 items-stretch justify-center p-4 flex-1"
+            >
+            <Heading mt={200} mb={4}>Final Grade</Heading>
+            <Text color="black" whiteSpace="pre-wrap">
+             {formatData(data)}
+            </Text>
+          </motion.div>
+        </AuroraBackground>
       )}
     </VStack>
   );

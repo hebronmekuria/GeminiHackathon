@@ -47,16 +47,18 @@ def api_call():
     conn = create_connection()
     try:
         rubrik_paths = retrieve_file_paths(conn, "3", "rubrik")
+        rubrik_path = rubrik_paths[0] if rubrik_paths else ""
     except:
-        return "Error: No rubriks found"
+        return jsonify({"error": "No rubriks found"}), 404
     try:
         essay_paths = retrieve_file_paths(conn, "3", 'essay')
+        essay_path = essay_paths[0] if essay_paths else ""
     except:
-        return "Error: No essays found"
-    result = main(rubrik_paths,essay_paths)
-    
+        return jsonify({"error": "No essays found"}), 404
+    result = main(rubrik_path, essay_path)
     
     return jsonify(result)
+
 
 @bp.route('/reset', methods=['POST'])
 def reset_database():
@@ -74,7 +76,7 @@ def get_files():
     nature = request.args.get('nature', default="rubrik")  # Default nature is "rubrik"
     conn = create_connection()
     file_paths = retrieve_file_paths(conn, user_id, nature)
-    if file_paths:
+    if file_paths!=[]:
         return jsonify({"file_paths": file_paths}), 200
     else:
         return jsonify({"error": "No files found for the specified criteria"}), 404

@@ -50,7 +50,8 @@ export default function Home() {
           rangeY={800}
           particleCount={500}
           baseHue={120}
-          className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full min-h-screen" // min-h-screen to fill the height of the screen
+          className="vortex-container"
+          
         >
           <Tabs index={tabIndex} onChange={handleTabsChange}>
             <TabList>
@@ -62,7 +63,7 @@ export default function Home() {
               <TabPanel>
                 <VStack>
                   <Heading as="h1" color="white" mt="65px" fontSize={"56px"}>
-                    Gemini Grader
+                    Gemini AI Grader
                   </Heading>
                   <div style={{ margin: "30px" }}>
                     <TypewriterEffectDemo />
@@ -116,17 +117,13 @@ export default function Home() {
                     <Text fontSize={20}>Submit</Text>
                   </SubmitButton>
                 </VStack>
-                {/* <MovingBorderDemo/> */}
+                <MovingBorderDemo/>
               </TabPanel>
               <TabPanel>
                 <ResultDisplay data={data} error={error} />
               </TabPanel>
               <TabPanel>
-                <Box borderWidth='1px' w='1000px' h="1000%" borderRadius='lg' >
-                  <VStack>
                   <EvervaultCardDemo></EvervaultCardDemo>
-                  </VStack>
-                </Box>
               </TabPanel>
             </TabPanels>
           </Tabs>

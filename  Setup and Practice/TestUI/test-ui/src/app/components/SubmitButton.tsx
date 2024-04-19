@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { Button, ButtonProps, Spinner } from '@chakra-ui/react';
+import { MultiStepLoaderDemo } from './MultiLoader';
 
 interface SubmitButtonProps extends ButtonProps {
   userId: string;
@@ -46,7 +47,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
 
     return (
         <>
-        <Button {...props} onClick={handleButtonClick} isLoading={isLoading} loadingText="Processing...">
+        <Button {...props} onClick={handleButtonClick} isLoading={isLoading} loadingText="Grading...">
           {isLoading ? <Spinner /> : children}
         </Button>
         </>
