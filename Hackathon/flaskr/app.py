@@ -10,9 +10,13 @@ from db import create_connection, store_file_path, retrieve_file_paths, reset_ta
 bp = Blueprint('upload', __name__, url_prefix='/upload')
 CORS(bp)
 
+# This file holds all our backend API endpoints
 
+
+#This endpoint is attached to both of the buttons that upload a file
 @bp.route('/file', methods=['POST'])
 def upload_file():
+    #extract the headers from the API request to be used in storing the file paths
     user_id = request.headers.get('User-ID', 3)
     nature = request.headers.get('nature', 'rubrik')
     if 'file' not in request.files:
@@ -34,9 +38,8 @@ def upload_file():
     store_file_path(conn, user_id, file_path, nature)
     return jsonify({"message": "File uploaded successfully", "path": file_path})
 
-# Additional routes or functions can go here
 
-
+#import the function that we are about to call in the next endpoint function
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src import main
 
@@ -59,7 +62,7 @@ def api_call():
     
     return jsonify(result)
 
-
+#Attached to the little reset button
 @bp.route('/reset', methods=['POST'])
 def reset_database():
     """ Endpoint to reset the file_paths table in the database """
@@ -70,6 +73,7 @@ def reset_database():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+#Attached to the dashboard where we try to find the previously uploaded rubriks and essays
 @bp.route('/files', methods=['GET'])
 def get_files():
     user_id = request.args.get('user_id', default="3")  # Default user_id is "3"

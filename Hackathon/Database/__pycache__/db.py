@@ -3,6 +3,8 @@ from sqlite3 import Error
 
 import os
 
+#This file has all the functions that interact with the database and make the respective changes to the database. 
+
 def create_connection():
     """ create a database connection to the SQLite database specified by db_file """
     base_dir = os.path.abspath(os.path.dirname(__file__))  # Get the absolute path of the directory where this script is located

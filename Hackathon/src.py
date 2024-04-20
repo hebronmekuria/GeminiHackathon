@@ -20,18 +20,19 @@ def convert(input_pdf):
     except subprocess.CalledProcessError as e:
         pass
 
+#Function to extract the content out of the given jpeg files. 
 def extract(file_path,type):
     convert(file_path)
-    
     elements = file_path.split("/")
     filename=elements[-1]
     basename=filename.split(".")[0]
+    #Determine the location that the .txt file will be in
     output_location="/".join(elements[:len(elements)-1])+"output_"+basename
     storage_file=basename+".txt"
-
+    #create new .txt file
     with open(storage_file, 'w') as file:
         file.write("")
-
+    #go through the folder with all the jpeg files and send each of them to Gemini for transcription
     for dirpath, dirnames, filenames in os.walk(output_location):
         dirnames.sort()
         filenames.sort()
@@ -49,12 +50,14 @@ def extract(file_path,type):
             with open(storage_file, 'a') as file:
                 file.write(response.text + '\n')
 
+#Helper function to extrac the base name from a file name with any ending
 def findBaseName(path):
     elements = path.split("/")
     filename=elements[-1]
     basename=filename.split(".")[0]
     return basename    
 
+#Main function that sends the API request to do the grading. The inputs are the essay and rubrik .txt files.
 def makeAPIRequest(rubrik, essay):
     model = genai.GenerativeModel('gemini-pro')
     if rubrik == "":
@@ -64,7 +67,8 @@ def makeAPIRequest(rubrik, essay):
     else:
         response = model.generate_content("Please grade this student's work based on correctness" + essay)
     return response.text
-    
+
+#Packaged function to be called from API    
 def main(rubrik_path, essay_path):
     extract(essay_path,'essay')
     basename=findBaseName(essay_path)
@@ -85,8 +89,6 @@ def main(rubrik_path, essay_path):
                 rub = file.read()
     return makeAPIRequest(rub,ess)
             
-
-# main("","essay.pdf")
   
 
 
