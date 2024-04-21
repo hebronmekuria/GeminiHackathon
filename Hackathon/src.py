@@ -1,6 +1,7 @@
 import google.generativeai as genai
 import PIL.Image
 import subprocess
+import fitz
 
 #These imports are used to import the .env file which contains the API key
 from dotenv import load_dotenv
@@ -11,18 +12,36 @@ load_dotenv()
 GOOGLE_API_KEY=os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=GOOGLE_API_KEY)
 
+
+#The following two functions are useful for the conversion of pdfs that don't have tables (usually essays)
+def extractText(pdf_path):
+    with fitz.open(pdf_path) as pdf:
+        pdf_text = ""
+        for page in pdf:
+            pdf_text += page.get_text()
+    return pdf_text
+
+def writeToFile(text, file_path):
+    with open(file_path, 'w') as file:
+        file.write(text)
+
 #Function to run pdf-->jpg conversion script
-def convert(input_pdf):
-    try:
-        # Run the Bash script with the PDF file as an argument
-        output = subprocess.check_output(['./scripts.sh', input_pdf], stderr=subprocess.STDOUT)
-        print(output.decode())
-    except subprocess.CalledProcessError as e:
-        pass
+def convert(input_pdf, nature):
+    if nature=='essay':
+        pdf_text=extractText(input_pdf)
+        basename=findBaseName(input_pdf)
+        writeToFile(pdf_text,basename+".txt")
+    else:
+        try:
+            # Run the Bash script with the PDF file as an argument
+            output = subprocess.check_output(['./scripts.sh', input_pdf], stderr=subprocess.STDOUT)
+            print(output.decode())
+        except subprocess.CalledProcessError as e:
+            pass
 
 #Function to extract the content out of the given jpeg files. 
-def extract(file_path,type):
-    convert(file_path)
+def extract(file_path,nature):
+    convert(file_path,nature)
     elements = file_path.split("/")
     filename=elements[-1]
     basename=filename.split(".")[0]
@@ -40,7 +59,7 @@ def extract(file_path,type):
             full_file_path = os.path.join(dirpath, filename)
             img = PIL.Image.open(full_file_path)
             model = genai.GenerativeModel('gemini-pro-vision') 
-            if type == "rubrik":
+            if nature == "rubrik":
                 prompt = "The following image contains a part of a rubrik"
                 "for a class essay. Ingest the contents of the rubrik and give a detailed"
                 "explanation of what it is saying"
@@ -70,7 +89,6 @@ def makeAPIRequest(rubrik, essay):
 
 #Packaged function to be called from API    
 def main(rubrik_path, essay_path):
-    extract(essay_path,'essay')
     basename=findBaseName(essay_path)
     storage_file=basename+".txt"    
     with open(storage_file, 'r') as file:
@@ -84,7 +102,6 @@ def main(rubrik_path, essay_path):
             with open(storage_file, 'r') as file:
                 rub = file.read()
         except:
-            extract(rubrik_path,'rubrik')
             with open(storage_file, 'r') as file:
                 rub = file.read()
     return makeAPIRequest(rub,ess)

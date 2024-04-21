@@ -32,7 +32,7 @@ def extractText(pdf_path):
     return pdf_text
 
 
-pdf_text = extractText("essay.pdf")
+pdf_text = extractText("Test/essay.pdf")
 
 
 def writeToFile(text, file_path):
@@ -41,3 +41,5 @@ def writeToFile(text, file_path):
 
 
 writeToFile(pdf_text, 'essay.txt')
+
+

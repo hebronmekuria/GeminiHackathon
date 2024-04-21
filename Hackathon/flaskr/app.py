@@ -12,6 +12,9 @@ CORS(bp)
 
 # This file holds all our backend API endpoints
 
+#import the function that we are about to call in the next endpoint function
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src import main, extract
 
 #This endpoint is attached to both of the buttons that upload a file
 @bp.route('/file', methods=['POST'])
@@ -36,12 +39,9 @@ def upload_file():
     
     conn = create_connection()
     store_file_path(conn, user_id, file_path, nature)
+    extract(file_path,nature)
     return jsonify({"message": "File uploaded successfully", "path": file_path})
 
-
-#import the function that we are about to call in the next endpoint function
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src import main
 
 @bp.route('/process', methods=['POST'])
 def api_call():
