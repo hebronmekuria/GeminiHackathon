@@ -42,7 +42,7 @@ def upload_file():
     extract(file_path,nature)
     return jsonify({"message": "File uploaded successfully", "path": file_path})
 
-
+#Attached to the submitButton component
 @bp.route('/process', methods=['POST'])
 def api_call():
     user_id = request.headers.get('User-ID', "3")
