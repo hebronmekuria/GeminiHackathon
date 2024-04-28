@@ -73,7 +73,7 @@ export default function Home() {
                   <HStack>
                     <FileUploadButton
                       bg="#A045FC"
-                      w="500px"
+                      w="300px"
                       h="120px"
                       mt="65px"
                       userId="3"
@@ -86,7 +86,7 @@ export default function Home() {
                         </Text>
                       </HStack>
                     </FileUploadButton>
-                  
+                    <FileUploadButton nature='' userId="3"> <Text fontSize={32} color="white">Grade by Correctness </Text></FileUploadButton>
                   </HStack>
                   <FileUploadButton
                     bg="#5F6FFF"
